@@ -88,10 +88,10 @@ if (not (defined $opts{'l'} || defined $opts{'p'} || defined $opts{'x'} || defin
 
 
 # -- Get XML from Exlibris Cloud status page -------------------
-my $browser = LWP::UserAgent->new(agent => "Mozilla/5.0 (X11; Linux x86_64; rv:39.0) Gecko/20100101 Firefox/39.0",);
+my $browser = LWP::UserAgent->new(agent => "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",);
    #$browser->ssl_opts(verify_hostname => 0);
    #$browser->ssl_opts(SSL_verify_mode => 0x00);
-my $result  = $browser->post($url, [act=>'get_status', $type=>$value, client=>'xml',]); 
+my $result  = $browser->post($url, [act=>'get_status', $type=>$value, client=>'xml','Content-type'=>'application/x-www-form-urlencoded']); 
 
 if ($result->is_error && $result->code != 406) {
     my $error_message = sprintf("HTTP error [%d] %s", $result->code, $result->message);
